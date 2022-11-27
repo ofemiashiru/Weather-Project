@@ -1,0 +1,73 @@
+<%- include('partials/header') %>
+
+<body>
+
+  <div class="top-header">
+    <h1><%=allWeather[0].city %>, <%= allWeather[0].country %> Weather Report</h1>
+    <div class="lat-lon">
+      <span>lat:</span> <%= allWeather[0].lat %>
+      <span>lon:</span> <%= allWeather[0].lon %>
+    </div>
+    <p class="todays-date"><%= today.toString() %></p>
+    <p>
+      <a href="/">Search another location</a>
+    </p>
+  </div>
+
+
+  <% orderedDays.forEach((item, i) => { %> <!--Main Loop Start -->
+
+    <div class="container"> <!--Main Div Start-->
+        <div class="row"> <!-- Each row start -->
+          <h2 class="day-heading">
+            <%= allDays[item]%>
+          </h2>
+
+        <% allWeather.forEach((weather, index)=>{ %> <!-- Sub Loop Start-->
+
+            <% if(weather.day === item){ %> <!-- If Start -->
+
+                <div class="col- col-ajasko">
+                  <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading<%= index %>">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
+                      <p class="weather-time">
+                         <%= weather.time %>
+                      </p>
+                      <img class="weather-image" src="http://openweathermap.org/img/wn/<%= weather.image %>@2x.png"/> <span class="weather-temp"><%=Math.floor(weather.theTemp) %>°C</span>
+                    </button>
+                  </h2>
+
+                  <div id="collapse<%= index %>" class="accordion-collapse collapse" aria-labelledby="heading<%= index %>" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p class="weather-description">
+                        <%= weather.desc %>
+                      </p>
+                      <p class="small-headings">
+                        <span>Humidity:</span> <%=weather.humid %>%
+                      </p>
+                      <p class="small-headings">
+                        <span>Visibility:</span> <%=weather.visi %>
+                      </p>
+                      <p class="small-headings">
+                        <span>Wind Speed:</span> <%=weather.wSpeed %>m/s
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+            <%}%> <!-- If End -->
+
+        <%});%><!--Sub Loop End-->
+
+      </div> <!-- Each row end -->
+      </div> <!--Main Div end-->
+  <%});%><!-- Main Loop End -->
+
+
+  <p class="mt-5 mb-3 text-muted ajasko-center"><%- include('partials/copyright') %></p>
+
+</body>
+
+<%- include('partials/footer') %>
