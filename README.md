@@ -1,5 +1,6 @@
 # Weather App
 Technologies: EJS | Express | NodeJS | Bootstrap
+![weather-app-responsive](https://raw.githubusercontent.com/ofemiashiru/weather-project/main/public/css/images/weather-app-responsive.png)
 
 Using a combination of EJS templating and Bootstrap I developed this simple Weather App that allows users to type in their specific location and receive a forecast for the next five days.
 
